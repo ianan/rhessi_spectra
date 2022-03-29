@@ -1,5 +1,7 @@
 # Example RHESSI Spectra
-Some example RHESSI X-ray spectra and SRM for a variety of flares. 
+
+Example RHESSI X-ray spectra and SRM for a variety of flares. Include sswidl scripts to produce files and fit in OSPEX (producing a pdf).
+
 ---
 ##### 20021005\_103800 M-Class A1 shutter in
 - SPECFILE: [20021005_103800_spec_sum.fits](https://github.com/ianan/rhessi_spectra/blob/main/20021005_103800_spec_sum.fits) SRMFILE: [20021005_103800_srm_sum.fits](https://github.com/ianan/rhessi_spectra/blob/main/20021005_103800_srm_sum.fits)
@@ -23,5 +25,4 @@ Some example RHESSI X-ray spectra and SRM for a variety of flares.
 - [RHESSI image archive entry 20030317]( https://hesperia.gsfc.nasa.gov/rhessi_extras/flare_images/2003/03/17/20030317_1821_1855/hsi_20030317_1821_1855.html) and [RHESSI image archive entry 20041024](https://hesperia.gsfc.nasa.gov/rhessi_extras/flare_images/2004/10/24/20041024_0005_0042/hsi_20041024_0005_0042.html)
 
 ---
-##### Note: 
-Includes the sswidl to make them and example OSPEX fits. Note that the setup in each is to roughly match the published versions (though published often photon broken power-law instead of thick-target).
+Note: Setup is to roughly match the published versions (though published often photon broken power-law instead of thick-target).
