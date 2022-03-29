@@ -20,7 +20,7 @@ Example RHESSI X-ray spectra and SRM for a variety of flares. Include sswidl scr
 ##### 20030317\_183930 and 20041024\_003038 B-Class A0 shutter out
 - SPECFILE: [20030317_183930_spec_sum.fits](https://github.com/ianan/rhessi_spectra/blob/main/20030317_183930_spec_sum.fits) SRMFILE: [20030317_183930_srm_sum.fits](https://github.com/ianan/rhessi_spectra/blob/main/20030317_183930_srm_sum.fits)
 - SPECFILE: [20041024_003038_spec_sum.fits](https://github.com/ianan/rhessi_spectra/blob/main/20041024_003038_spec_sum.fits) SRMFILE: [20041024_003038_srm_sum.fits](https://github.com/ianan/rhessi_spectra/blob/main/20041024_003038_srm_sum.fits)
-- Microflares (Fig 9b and f) from [Hannah et al. 2008](https://doi.org/10.1086/529012) B-Class (A-Class Background subtracted) and A0 shutter out 
+- Microflares (Fig 9b and f) from [Hannah et al. 2008](https://doi.org/10.1086/529012) B-Class (A-Class backsub) and A0 shutter out 
 - From *\_mfstats9\_a0.pro and [OSPEX fit pdf 20030317](https://github.com/ianan/rhessi_spectra/blob/main/mfl_20030317_184138_a0.pdf) and [OSPEX fit pdf 20041024](https://github.com/ianan/rhessi_spectra/blob/main/mfl_20041024_003138_a0.pdf)
 - [RHESSI image archive entry 20030317]( https://hesperia.gsfc.nasa.gov/rhessi_extras/flare_images/2003/03/17/20030317_1821_1855/hsi_20030317_1821_1855.html) and [RHESSI image archive entry 20041024](https://hesperia.gsfc.nasa.gov/rhessi_extras/flare_images/2004/10/24/20041024_0005_0042/hsi_20041024_0005_0042.html)
 
