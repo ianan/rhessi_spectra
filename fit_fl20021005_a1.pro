@@ -25,8 +25,8 @@ pro fit_fl20021005_a1
   o->set, mcurvefit_itmax=75
   o->set, mcurvefit_tol=1e-5
 
-  o-> set, spex_specfile= break_time(tr[0])+'_spec_sum.fits'
-  o-> set, spex_drmfile= break_time(tr[0])+'_srm_sum.fits'
+  o-> set, spex_specfile= 'fits/'+break_time(tr[0])+'_spec_sum.fits'
+  o-> set, spex_drmfile= 'fits/'+break_time(tr[0])+'_srm_sum.fits'
   o->set, spex_fit_time_interval=ftims
   o->set, fit_comp_param=[1e-3,1.5,1,1e-2,6,1000,20,15,1000]
   o->set,spex_bk_time_interval=btims
@@ -71,7 +71,7 @@ pro fit_fl20021005_a1
   @post_outset
   !p.multi=0
   !p.charsize=1.2
-  figname='fl_'+break_time(ftims[0])+'_a1.eps'
+  figname='figs/fl_'+break_time(ftims[0])+'_a1.eps'
   set_plot,'ps'
   device, /encapsulated, /color, /isolatin1,/inches, $
     bits=8, xsize=6, ysize=5,file=figname

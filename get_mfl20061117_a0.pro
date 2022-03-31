@@ -8,11 +8,11 @@ pro get_mfl20061117_a0
   ; Entry for this flare in the archive::
   ; https://hesperia.gsfc.nasa.gov/rhessi_extras/flare_images/2006/11/17/20061117_0512_0516/hsi_20061117_0512_0516.html
   ;
-  ; Need the following line if don't already have the original data
-  ; search_network,/enabled
-  ;
   ; 29-Mar-2022 IGH
   ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ;
+  ; Need the following line if don't already have the original data
+  search_network,/enabled
 
   btims='17-Nov-2006 '+['05:13:00','05:13:20']
   ftims='17-Nov-2006 '+['05:13:28','05:13:40']
@@ -40,8 +40,8 @@ pro get_mfl20061117_a0
   os-> set, sum_flag= 1
   ;Write the file out
   os->filewrite,/fits,/build,simplify=0,$
-    srmfile=break_time(tr[0])+'_srm_sum.fits',$
-    specfile=break_time(tr[0])+'_spec_sum.fits'
+    srmfile='fits/'+break_time(tr[0])+'_srm_sum.fits',$
+    specfile='fits/'+break_time(tr[0])+'_spec_sum.fits'
 
   obj_destroy, os
 

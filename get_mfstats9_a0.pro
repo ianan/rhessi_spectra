@@ -10,11 +10,10 @@ pro get_mfstats9_a0
   ; 9f
   ; https://hesperia.gsfc.nasa.gov/rhessi_extras/flare_images/2004/10/24/20041024_0005_0042/hsi_20041024_0005_0042.html
   ;
-  ; Need the following line if don't already have the original data
-  ; search_network,/enabled
-  ;
   ; 29-Mar-2022 IGH
   ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ; Need the following line if don't already have the original data
+  search_network,/enabled
 
   ; Times from paper microflare list, and found via get_mfstat_times.pro
   restgen,file='wee_fig9.genx',resin
@@ -29,7 +28,7 @@ pro get_mfstats9_a0
     ; Do the spectrum and SRM for
     ; 4 sec before the start of pre-flare background time to 4 sec after flare end time
     tr=anytim([anytim(resin[i].bk_bf_tr[0])-4,anytim(resin[i].fend)+4],/yoh,/trunc)
-   
+
     print,tr
 
     ;  Make the spectrum and SRM files
@@ -51,8 +50,8 @@ pro get_mfstats9_a0
     os-> set, pileup_correct= 0
     os-> set, sum_flag=1
     os->filewrite,/fits,/build,simplify=0,$
-      srmfile=break_time(tr[0])+'_srm_sum.fits',$
-      specfile=break_time(tr[0])+'_spec_sum.fits'
+      srmfile='fits/'+break_time(tr[0])+'_srm_sum.fits',$
+      specfile='fits/'+break_time(tr[0])+'_spec_sum.fits'
 
     obj_destroy, os
   endfor

@@ -2,15 +2,15 @@ pro get_fl20021005_a1
 
   ; These times/setup are those used in Flecther et. 2007, flare #3
   ;  https://doi.org/10.1086/510446
-  ; 
+  ;
   ; Entry for this flare in the archive:
   ; https://hesperia.gsfc.nasa.gov/rhessi_extras/flare_images/2002/10/05/20021005_1040_1056/hsi_20021005_1040_1056.html
-  ; 
-  ; Need the following line if don't already have the original data
-  ; search_network,/enabled
   ;
   ; 29-Mar-2022 IGH
   ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  ; Need the following line if don't already have the original data
+  search_network,/enabled
 
   btims='05-Oct-2002 '+['10:38:32','10:40:32']
   ftims='05-Oct-2002 '+['10:41:20','10:42:24']
@@ -35,8 +35,8 @@ pro get_fl20021005_a1
   os-> set, sum_flag= 1
   ;Write the file out
   os->filewrite,/fits,/build,simplify=0,$
-    srmfile=break_time(tr[0])+'_srm_sum.fits',$
-    specfile=break_time(tr[0])+'_spec_sum.fits'
+    srmfile='fits/'+break_time(tr[0])+'_srm_sum.fits',$
+    specfile='fits/'+break_time(tr[0])+'_spec_sum.fits'
   obj_destroy, os
 
 
