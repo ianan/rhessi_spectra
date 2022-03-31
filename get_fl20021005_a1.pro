@@ -22,7 +22,8 @@ pro get_fl20021005_a1
   ; Energy 1/3 keV binning 3-100 keV with
   eres=1/3.
   os->set,sp_energy_binning=3.+findgen(97/eres+1)*eres
-  os->set,seg_index_mask=[1,0,1,1,0,1,0,1,1,0,0,0,0,0,0,0,0,0]
+  dets=[1,0,1,1,0,1,0,1,1,0,0,0,0,0,0,0,0,0]
+  os->set,seg_index_mask=dets
   os->set,sp_data_unit='rate'
   os->set,sp_time_interval=4.
   os-> set, use_flare_xyoffset= 1
@@ -37,6 +38,31 @@ pro get_fl20021005_a1
   os->filewrite,/fits,/build,simplify=0,$
     srmfile='fits/'+break_time(tr[0])+'_srm_sum.fits',$
     specfile='fits/'+break_time(tr[0])+'_spec_sum.fits'
+
+  ;~~~~~~~~~~~~~~~~~~~~
+  ; Repeat above but save out for individual detectors
+
+  ; Use rhessi spectrum object approach
+  os-> set, sum_flag= 0
+  os->filewrite,/fits,/build,simplify=0,$
+    srmfile='fits/'+break_time(tr[0])+'_srm_sep.fits',$
+    specfile='fits/'+break_time(tr[0])+'_spec_sep.fits'
+
+  ; Do it manually
+  use_det=where(dets eq 1,nud)
+  for i=0, nud-1 do begin
+    dets_temp=intarr(18)
+    dets_temp[use_det[0]]=1
+    os->set,seg_index_mask=dets_temp
+    dname='d'+strcompress(string(use_det[i]+1),/rem)
+    os-> set, sum_flag= 0
+    os->filewrite,/fits,/build,simplify=0,$
+      srmfile='fits/'+break_time(tr[0])+'_srm_'+dname+'.fits',$
+      specfile='fits/'+break_time(tr[0])+'_spec_'+dname+'.fits'
+
+  endfor
+
+
   obj_destroy, os
 
 
