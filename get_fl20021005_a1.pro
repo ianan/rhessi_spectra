@@ -7,6 +7,7 @@ pro get_fl20021005_a1
   ; https://hesperia.gsfc.nasa.gov/rhessi_extras/flare_images/2002/10/05/20021005_1040_1056/hsi_20021005_1040_1056.html
   ;
   ; 29-Mar-2022 IGH
+  ; 01-Apr-2022 IGH - Fix bug in writing out sep det manually
   ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ; Need the following line if don't already have the original data
@@ -52,7 +53,7 @@ pro get_fl20021005_a1
   use_det=where(dets eq 1,nud)
   for i=0, nud-1 do begin
     dets_temp=intarr(18)
-    dets_temp[use_det[0]]=1
+    dets_temp[use_det[i]]=1
     os->set,seg_index_mask=dets_temp
     dname='d'+strcompress(string(use_det[i]+1),/rem)
     os-> set, sum_flag= 0
