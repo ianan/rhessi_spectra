@@ -1,7 +1,7 @@
 pro get_mfstats9_a0
 
   ; These times are those used in Hannah et. 2008,
-  ; Some examples from the statistics study in Figure 9, doing b and f just now
+  ; Some examples from the statistics study in Figure 9, doing all now
   ;  https://doi.org/10.1086/529012
   ;
   ; Entry for this flare in the archive (with others - small one during rise of something bigger):
@@ -9,16 +9,20 @@ pro get_mfstats9_a0
   ; https://hesperia.gsfc.nasa.gov/rhessi_extras/flare_images/2003/03/17/20030317_1821_1855/hsi_20030317_1821_1855.html
   ; 9f
   ; https://hesperia.gsfc.nasa.gov/rhessi_extras/flare_images/2004/10/24/20041024_0005_0042/hsi_20041024_0005_0042.html
+  ; Can find the archive entries for the other flares in the figure
   ;
   ; 29-Mar-2022 IGH
+  ; 12-Oct-2023 Do all of them now and save in new directory mfstats9_fits/
   ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ; Need the following line if don't already have the original data
   search_network,/enabled
 
   ; Times from paper microflare list, and found via get_mfstat_times.pro
   restgen,file='wee_fig9.genx',resin
-  ;   At this stage just want b and f
-  ids=[1,5]
+;  ;   At this stage just want b and f
+;  ids=[1,5]
+  ;   Now do all of them
+  ids=indgen(n_elements(resin.fstart))
   nf=n_elements(ids)
 
   for ii=0,nf-1 do begin
@@ -50,8 +54,8 @@ pro get_mfstats9_a0
     os-> set, pileup_correct= 0
     os-> set, sum_flag=1
     os->filewrite,/fits,/build,simplify=0,$
-      srmfile='fits/'+break_time(tr[0])+'_srm_sum.fits',$
-      specfile='fits/'+break_time(tr[0])+'_spec_sum.fits'
+      srmfile='mfstats9_fits/'+break_time(tr[0])+'_srm_sum.fits',$
+      specfile='mfstats9_fits/'+break_time(tr[0])+'_spec_sum.fits'
 
     obj_destroy, os
   endfor
