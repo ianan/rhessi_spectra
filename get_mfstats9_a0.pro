@@ -18,9 +18,11 @@ pro get_mfstats9_a0
   search_network,/enabled
 
   ; Times from paper microflare list, and found via get_mfstat_times.pro
+  ;  Changed time format in wee_fig9.genx to isot for python but should still work here
+  ;  As doing an anytim() before giving the times to the object
   restgen,file='wee_fig9.genx',resin
-;  ;   At this stage just want b and f
-;  ids=[1,5]
+  ;  ;   At this stage just want b and f
+  ;  ids=[1,5]
   ;   Now do all of them
   ids=indgen(n_elements(resin.fstart))
   nf=n_elements(ids)

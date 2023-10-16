@@ -14,12 +14,13 @@ pro fit_mfstats9_a0
   ; search_network,/enabled
   ;
   ; 29-Mar-2022 IGH
+  ; 16-Oct-2023 Now do all 6 from Fig 9 in Hannah et al. 2008 
   ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ; Times from paper microflare list, and found via get_mfstat_times.pro
   restgen,file='wee_fig9.genx',resin
   ;   At this stage just want b and f
-  ids=[1,5]
+  ids=indgen(6);[1,5]
   nf=n_elements(ids)
 
   for ii=0,nf-1 do begin
@@ -46,8 +47,8 @@ pro fit_mfstats9_a0
     o->set, mcurvefit_itmax=75
     o->set, mcurvefit_tol=1e-5
 
-    o-> set, spex_specfile= 'fits/'+break_time(tr[0])+'_spec_sum.fits'
-    o-> set, spex_drmfile= 'fits/'+break_time(tr[0])+'_srm_sum.fits'
+    o-> set, spex_specfile= 'mfstats9_fits/'+break_time(tr[0])+'_spec_sum.fits'
+    o-> set, spex_drmfile= 'mfstats9_fits/'+break_time(tr[0])+'_srm_sum.fits'
     o->set, spex_fit_time_interval=ftims
     o->set, fit_comp_param=[1e-3,1.5,1,1e-2,6,1000,20,15,1000]
     o->set,spex_bk_time_interval=btims
