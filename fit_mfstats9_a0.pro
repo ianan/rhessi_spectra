@@ -15,6 +15,7 @@ pro fit_mfstats9_a0
   ;
   ; 29-Mar-2022 IGH
   ; 16-Oct-2023 Now do all 6 from Fig 9 in Hannah et al. 2008 
+  ; 06-Nov-2023 Filenames now with increase time range to +/- 16s
   ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ; Times from paper microflare list, and found via get_mfstat_times.pro
@@ -30,7 +31,7 @@ pro fit_mfstats9_a0
     
     ; Do the spectrum and SRM for
     ; 4 sec before the start of pre-flare background time to 4 sec after flare end time
-    tr=anytim([anytim(resin[i].bk_bf_tr[0])-4,anytim(resin[i].fend)+4],/yoh,/trunc)
+    tr=anytim([anytim(resin[i].bk_bf_tr[0])-16,anytim(resin[i].fend)+16],/yoh,/trunc)
 
     print,tr
 

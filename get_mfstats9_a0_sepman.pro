@@ -5,6 +5,7 @@ pro get_mfstats9_a0_sepman
   ; And produce separate file for each of the 6 detectors (previous work summed these together)
   ;
   ; 12-Oct-2023 IGH
+  ; 06-Nov-2023 Increase time range to +/- 16s
   ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ; Need the following line if don't already have the original data
   search_network,/enabled
@@ -21,7 +22,7 @@ pro get_mfstats9_a0_sepman
     ftims=resin[i].fpeak_tr
     ; Do the spectrum and SRM for
     ; 4 sec before the start of pre-flare background time to 4 sec after flare end time
-    tr=anytim([anytim(resin[i].bk_bf_tr[0])-4,anytim(resin[i].fend)+4],/yoh,/trunc)
+    tr=anytim([anytim(resin[i].bk_bf_tr[0])-16,anytim(resin[i].fend)+16],/yoh,/trunc)
     
     ; Need to loop over each detector
     ; Doing default 1,3,4,6,8,9

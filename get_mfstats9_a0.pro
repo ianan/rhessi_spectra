@@ -13,6 +13,7 @@ pro get_mfstats9_a0
   ;
   ; 29-Mar-2022 IGH
   ; 12-Oct-2023 Do all of them now and save in new directory mfstats9_fits/
+  ; 06-Nov-2023 Increase time range to +/- 16s
   ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ; Need the following line if don't already have the original data
   search_network,/enabled
@@ -33,7 +34,7 @@ pro get_mfstats9_a0
     ftims=resin[i].fpeak_tr
     ; Do the spectrum and SRM for
     ; 4 sec before the start of pre-flare background time to 4 sec after flare end time
-    tr=anytim([anytim(resin[i].bk_bf_tr[0])-4,anytim(resin[i].fend)+4],/yoh,/trunc)
+    tr=anytim([anytim(resin[i].bk_bf_tr[0])-16,anytim(resin[i].fend)+16],/yoh,/trunc)
 
     print,tr
 
