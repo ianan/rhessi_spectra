@@ -6,6 +6,7 @@ pro get_mfstats9_a0_sepman
   ;
   ; 12-Oct-2023 IGH
   ; 06-Nov-2023 Increase time range to +/- 16s
+  ; 13-Nov-2023 Corrected dets 134689 to 134589
   ; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ; Need the following line if don't already have the original data
   search_network,/enabled
@@ -25,11 +26,11 @@ pro get_mfstats9_a0_sepman
     tr=anytim([anytim(resin[i].bk_bf_tr[0])-16,anytim(resin[i].fend)+16],/yoh,/trunc)
     
     ; Need to loop over each detector
-    ; Doing default 1,3,4,6,8,9
+    ; Doing default 1,3,4,5,8,9
     ; If just did sum_flag=0 would save all separate to same file (?) 
     ; which some fitting packages don't like
     
-    dets=[1,0,1,1,0,1,0,1,1,0,0,0,0,0,0,0,0,0]
+    dets=[1,0,1,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0]
     use_det=where(dets eq 1,nud)
     for i=0, nud-1 do begin
       ;  Make the spectrum and SRM files
