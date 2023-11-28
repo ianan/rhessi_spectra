@@ -51,10 +51,10 @@ pro get_mfstats9_a0_org_sep
       print,dets_temp
       os->set,seg_index_mask=dets_temp
       dname='d'+strcompress(string(use_det[di]+1),/rem)
-      os-> set, sum_flag= 0
+      os-> set, sum_flag= 1
       os->filewrite,/fits,/build,simplify=0,$
-        srmfile='mfstats9_fits/'+break_time(resin[i].fpeak)+'_srm_org_'+dname+'.fits',$
-        specfile='mfstats9_fits/'+break_time(resin[i].fpeak)+'_spec_org_'+dname+'.fits'
+        srmfile='mfstats9_fits/'+break_time(resin[i].fpeak)+'_srm_org_'+dname+'_sf1.fits',$
+        specfile='mfstats9_fits/'+break_time(resin[i].fpeak)+'_spec_org_'+dname+'_sf1.fits'
       obj_destroy, os
     endfor
 
