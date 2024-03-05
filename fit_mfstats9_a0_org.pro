@@ -17,7 +17,7 @@ pro fit_mfstats9_a0_org
   tmk2kev = 0.086164
   default, tolerance, 1e-4
   default, max_iter, 75
-  default, uncert, 0.05
+  default, uncert, 0.02
 
   ; f_vth
   ; a[0]  em_49, emission measure units of 10^49
@@ -48,30 +48,30 @@ pro fit_mfstats9_a0_org
 
     set_logenv, 'OSPEX_NOINTERACTIVE', '1'
     o = ospex()
-    o.set, spex_fit_manual = 0, spex_fit_reverse = 0, spex_fit_start_method = 'previous_int'
-    o.set, spex_autoplot_enable = 0, spex_fitcomp_plot_resid = 0, spex_fit_progbar = 0
+    o->set, spex_fit_manual = 0, spex_fit_reverse = 0, spex_fit_start_method = 'previous_int'
+    o->set, spex_autoplot_enable = 0, spex_fitcomp_plot_resid = 0, spex_fit_progbar = 0
 
-    o.set, fit_function = 'vth+thick2'
-    o.set, fit_comp_spectrum = ['full', '']
-    o.set, fit_comp_model = ['chianti', '']
+    o->set, fit_function = 'vth+thick2'
+    o->set, fit_comp_spectrum = ['full', '']
+    o->set, fit_comp_model = ['chianti', '']
 
-    o.set, spex_summ_uncert = uncert
-    o.set, mcurvefit_itmax = max_iter
-    o.set, mcurvefit_tol = tolerance
+    o->set, spex_summ_uncert = uncert
+    o->set, mcurvefit_itmax = max_iter
+    o->set, mcurvefit_tol = tolerance
 
-    o.set, spex_specfile = 'mfstats9_fits/' + break_time(resin[i].fpeak) + '_spec_sum_org.fits'
-    o.set, spex_drmfile = 'mfstats9_fits/' + break_time(resin[i].fpeak) + '_srm_sum_org.fits'
-    o.set, spex_fit_time_interval = ftims
-    o.set, spex_bk_time_interval = btims
-    o.set, spex_bk_order = 0
-    o.set, fit_comp_minima = fitmin
-    o.set, fit_comp_maxima = fitmax
+    o->set, spex_specfile = 'mfstats9_fits/' + break_time(resin[i].fpeak) + '_spec_sum_org.fits'
+    o->set, spex_drmfile = 'mfstats9_fits/' + break_time(resin[i].fpeak) + '_srm_sum_org.fits'
+    o->set, spex_fit_time_interval = ftims
+    o->set, spex_bk_time_interval = btims
+    o->set, spex_bk_order = 0
+    o->set, fit_comp_minima = fitmin
+    o->set, fit_comp_maxima = fitmax
 
     ; A0 could fit down to 3 keV, but this is the time with bad/noisy detectors so might not work
-    o.set, spex_erange = [4, 8]
-    o.set, fit_comp_free = [1, 1, 0, 0, 0, 0, 0, 0, 0]
-    o.set, fit_comp_param = fitstart
-    o.dofit
+    o->set, spex_erange = [4, 8]
+    o->set, fit_comp_free = [1, 1, 0, 0, 0, 0, 0, 0, 0]
+    o->set, fit_comp_param = fitstart
+    o->dofit
 
     ; Workout where the background matches the data
     bksub = o.getdata(class = 'spex_fitint', spex_units = 'flux')
@@ -83,12 +83,12 @@ pro fit_mfstats9_a0_org
     engs = o.getaxis(/ct_energy, /edges_2)
     uppereng = engs[0, bad]
 
-    o.set, spex_erange = [9, uppereng] ; [8,15]
-    o.set, fit_comp_free = [0, 0, 0, 1, 1, 0, 0, 1, 0]
-    o.dofit
-    o.set, spex_erange = [4, uppereng] ; [4,15]
-    o.set, fit_comp_free = [1, 1, 0, 1, 1, 0, 0, 1, 0]
-    o.dofit
+    o->set, spex_erange = [9, uppereng] ; [8,15]
+    o->set, fit_comp_free = [0, 0, 0, 1, 1, 0, 0, 1, 0]
+    o->dofit
+    o->set, spex_erange = [4, uppereng] ; [4,15]
+    o->set, fit_comp_free = [1, 1, 0, 1, 1, 0, 0, 1, 0]
+    o->dofit
 
     p = o.get(/spex_summ_params)
     perr = o.get(/spex_summ_sigmas)
